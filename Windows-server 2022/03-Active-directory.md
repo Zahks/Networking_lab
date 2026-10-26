@@ -116,7 +116,7 @@ Utilisateurs
 
 Chaque sous-OU représente un service de l'entreprise.
 
-Cette organisation permet :
+### Avantages:
 
 - une meilleure lisibilité de l'annuaire ;
 - une gestion simplifiée des utilisateurs ;
@@ -132,9 +132,40 @@ Ordinateurs
 │
 └── DESKTOP-RNDT6FD
 ```
+## Groupes de sécurité
 
-Cette séparation facilite l'application des stratégies destinées aux ordinateurs indépendamment des utilisateurs.
+Afin de simplifier la gestion des permissions et de faciliter l'administration des ressources, plusieurs groupes de sécurité ont été créés.
 
+### Groupes métiers
+
+```text
+G_IT
+G_RH
+G_FINANCE
+G_DIRECTION
+```
+
+Ces groupes permettent de regrouper les utilisateurs en fonction de leur service.
+
+### Groupes d'accès
+
+```text
+G_Acces_IT
+G_Acces_RH
+G_Acces_Finance
+G_Acces_Direction
+```
+
+Ces groupes sont utilisés pour attribuer les permissions sur les ressources partagées.
+
+Cette approche permet de gérer les accès via des groupes plutôt que directement sur les comptes utilisateurs.
+
+### Avantages
+
+- Administration simplifiée
+- Gestion centralisée des droits
+- Évolutivité
+- Respect des bonnes pratiques Active Directory
 
 ## Authentification
 
