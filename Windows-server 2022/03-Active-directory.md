@@ -99,47 +99,42 @@ Elles facilitent :
 
 ## Structure Active Directory
 
-Afin de reproduire une organisation proche d'une PME, plusieurs unités d'organisation ont été créées.
+Afin d'organiser les objets Active Directory et de faciliter l'administration, des unités d'organisation personnalisées ont été créées.
 
 ### OU Utilisateurs
 
+L'ensemble des utilisateurs métier est regroupé dans une unité d'organisation parent dédiée.
+
 ```text
-OU Utilisateurs
+Utilisateurs
 │
-├── IT
-├── RH
-├── Finance
-└── Direction
+├── IT (J. Awountsac)
+├── RH (A. Awountsac)
+├── Finance (M. Awountsac)
+└── Direction (U. Awountsac)
 ```
 
-Cette structure permet de séparer les utilisateurs par service et facilite l'application de stratégies spécifiques si nécessaire.
+Chaque sous-OU représente un service de l'entreprise.
+
+Cette organisation permet :
+
+- une meilleure lisibilité de l'annuaire ;
+- une gestion simplifiée des utilisateurs ;
+- l'application ciblée des GPO ;
+- une meilleure évolutivité de l'infrastructure.
 
 ### OU Ordinateurs
 
+Les postes de travail du domaine sont regroupés dans une OU spécifique :
+
 ```text
-OU Ordinateurs
+Ordinateurs
 │
 └── DESKTOP-RNDT6FD
 ```
 
-Les postes du domaine sont regroupés dans cette unité d'organisation afin de faciliter leur administration.
+Cette séparation facilite l'application des stratégies destinées aux ordinateurs indépendamment des utilisateurs.
 
----
-
-## Utilisateurs créés
-
-Plusieurs utilisateurs ont été créés afin de représenter différents services de l'entreprise.
-
-| Service | Utilisateur |
-|----------|-------------|
-| IT | J. Awountsac |
-| RH | A. Awountsac |
-| Finance | M. Awountsac |
-| Direction | U. Awountsac |
-
-Chaque utilisateur dispose d'un compte distinct lui permettant de s'authentifier sur le domaine.
-
----
 
 ## Authentification
 
