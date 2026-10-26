@@ -1,4 +1,3 @@
-
 # Contexte du projet
 
 ## Présentation
