@@ -1,105 +1,31 @@
-# Active Directory
-
-## Présentation
-
-Active Directory est le service d'annuaire utilisé dans les environnements Microsoft pour centraliser l'authentification, l'administration des utilisateurs, des ordinateurs et l'application des stratégies de sécurité.
-
-Dans ce laboratoire, Active Directory constitue le cœur de l'infrastructure. Il permet de gérer les comptes utilisateurs, les postes de travail et les stratégies de groupe à partir d'un point d'administration unique.
-
----
-
-## Contrôleur de domaine
-
-Le rôle Active Directory Domain Services (AD DS) a été installé sur le serveur :
-
-```text
-DC01
-```
-
-Adresse IP :
-
-```text
-192.168.1.10
-```
-
-Le serveur assure également le rôle DNS nécessaire au fonctionnement du domaine.
-
----
-
-## Domaine Active Directory
-
-### Forêt
-
-```text
-lab.local
-```
-
-### Domaine
-
-```text
-lab.local
-```
-
-### Nom NetBIOS
-
-```text
-LAB
-```
-
-Dans ce laboratoire, la forêt et le domaine sont identiques car l'infrastructure ne comporte qu'un seul domaine.
-
----
-
-## Notions importantes
-
-### Forêt (Forest)
-
-La forêt représente le niveau logique le plus élevé d'Active Directory.
-
-Elle constitue la frontière de confiance globale regroupant un ou plusieurs domaines.
-
-Dans ce projet :
-
-```text
-Forêt = lab.local
-```
-
----
-
-### Domaine (Domain)
-
-Le domaine représente une frontière administrative et de sécurité.
-
-Il permet de centraliser :
-
-- l'authentification ;
-- les comptes utilisateurs ;
-- les ordinateurs ;
-- les stratégies de sécurité.
-
-Dans ce projet :
-
-```text
-Domaine = lab.local
-```
-
----
-
-### Unité d'organisation (OU)
-
-Les unités d'organisation permettent de structurer les objets Active Directory.
-
-Elles facilitent :
-
-- l'administration ;
-- la délégation ;
-- l'application des GPO.
-
----
-
 ## Structure Active Directory
 
-Afin d'organiser les objets Active Directory et de faciliter l'administration, des unités d'organisation personnalisées ont été créées.
+Afin d'organiser les objets Active Directory et de faciliter l'administration, plusieurs unités d'organisation personnalisées ont été créées.
+
+Cette structuration permet de séparer les utilisateurs, les ordinateurs et les groupes de sécurité afin de faciliter l'administration quotidienne et l'application des stratégies de groupe.
+
+### Organisation générale
+
+```text
+lab.local
+│
+├── Domain Controllers
+│   └── DC01
+│
+├── Utilisateurs
+│   │
+│   ├── IT
+│   ├── RH
+│   ├── Finance
+│   └── Direction
+│
+├── Ordinateurs
+│   └── DESKTOP-RNDT6FD
+│
+└── Groupe
+```
+
+---
 
 ### OU Utilisateurs
 
@@ -108,44 +34,67 @@ L'ensemble des utilisateurs métier est regroupé dans une unité d'organisation
 ```text
 Utilisateurs
 │
-├── IT (J. Awountsac)
-├── RH (A. Awountsac)
-├── Finance (M. Awountsac)
-└── Direction (U. Awountsac)
+├── IT
+│   └── J. Awountsac
+│
+├── RH
+│   └── A. Awountsac
+│
+├── Finance
+│   └── M. Awountsac
+│
+└── Direction
+    └── U. Awountsac
 ```
 
 Chaque sous-OU représente un service de l'entreprise.
 
-### Avantages:
+Cette organisation permet :
 
 - une meilleure lisibilité de l'annuaire ;
-- une gestion simplifiée des utilisateurs ;
+- une administration simplifiée ;
 - l'application ciblée des GPO ;
 - une meilleure évolutivité de l'infrastructure.
 
+---
+
 ### OU Ordinateurs
 
-Les postes de travail du domaine sont regroupés dans une OU spécifique :
+Les postes de travail du domaine sont regroupés dans une unité d'organisation dédiée.
 
 ```text
 Ordinateurs
 │
 └── DESKTOP-RNDT6FD
 ```
+
+Cette séparation permet d'appliquer des stratégies spécifiques aux postes du domaine indépendamment des utilisateurs.
+
+
 ## Groupes de sécurité
 
-Afin de simplifier la gestion des permissions et de faciliter l'administration des ressources, plusieurs groupes de sécurité ont été créés.
+Afin de simplifier l'administration des permissions et de respecter les bonnes pratiques Active Directory, plusieurs groupes de sécurité ont été créés.
 
 ### Groupes métiers
 
 ```text
 G_IT
 G_RH
-G_FINANCE
-G_DIRECTION
+G_Finance
+G_Direction
 ```
 
-Ces groupes permettent de regrouper les utilisateurs en fonction de leur service.
+Ces groupes permettent de regrouper les utilisateurs selon leur service.
+
+Exemple :
+
+```text
+J. Awountsac
+        ↓
+      G_IT
+```
+
+---
 
 ### Groupes d'accès
 
@@ -156,20 +105,37 @@ G_Acces_Finance
 G_Acces_Direction
 ```
 
-Ces groupes sont utilisés pour attribuer les permissions sur les ressources partagées.
+Ces groupes servent à attribuer les permissions sur les ressources partagées.
 
-Cette approche permet de gérer les accès via des groupes plutôt que directement sur les comptes utilisateurs.
+Cette approche permet d'administrer les accès via des groupes plutôt que directement sur les comptes utilisateurs.
+
+---
+
+### Exemple d'organisation des droits
+
+```text
+M. Awountsac
+        ↓
+     G_Finance
+        ↓
+ G_Acces_Finance
+        ↓
+ Dossier Finance
+```
+
+---
 
 ### Avantages
 
-- Administration simplifiée
-- Gestion centralisée des droits
-- Évolutivité
-- Respect des bonnes pratiques Active Directory
+- administration simplifiée ;
+- gestion centralisée des accès ;
+- évolutivité ;
+- application des bonnes pratiques Active Directory ;
+- réduction du risque d'erreurs lors de l'attribution des permissions.
 
 ## Authentification
 
-Une fois connecté au domaine, un utilisateur peut ouvrir une session à l'aide de son compte Active Directory.
+Une fois intégré au domaine, un utilisateur peut ouvrir une session à l'aide de son compte Active Directory.
 
 Exemple :
 
@@ -177,46 +143,12 @@ Exemple :
 LAB\mawountsac
 ```
 
-L'authentification est vérifiée par le contrôleur de domaine DC01.
-
----
-
-## Ordinateurs du domaine
-
-Le poste suivant a été joint au domaine :
+ou
 
 ```text
-DESKTOP-RNDT6FD
-```
+LAB\jawountsac
+``
 
-L'intégration au domaine permet :
+L'authentification est réalisée par le contrôleur de domaine DC01 qui vérifie l'identité de l'utilisateur dans Active Directory.
 
-- l'utilisation des comptes Active Directory ;
-- l'application automatique des GPO ;
-- la gestion centralisée des postes.
 
----
-
-## Bénéfices de l'organisation retenue
-
-Cette architecture permet :
-
-- une administration centralisée ;
-- une séparation logique des services ;
-- une gestion simplifiée des permissions ;
-- une application ciblée des stratégies de groupe ;
-- une meilleure évolutivité de l'infrastructure.
-
----
-
-## Compétences développées
-
-À travers cette mise en œuvre, les compétences suivantes ont été acquises :
-
-- Installation d'Active Directory Domain Services ;
-- Promotion d'un serveur en contrôleur de domaine ;
-- Gestion d'une forêt et d'un domaine ;
-- Création et organisation des OU ;
-- Création de comptes utilisateurs ;
-- Jonction de postes au domaine ;
-- Administration quotidienne d'Active Directory.
