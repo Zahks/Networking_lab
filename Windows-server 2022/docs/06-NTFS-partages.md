@@ -212,7 +212,7 @@ L'héritage a été désactivé sur certains dossiers afin de :
 - conserver uniquement les groupes nécessaires ;
 - simplifier l'analyse des droits.
 
-Cette manipulation a permis d'appliquer des permissions explicites plus précises.
+Cette manipulation a permis d'appliquer des permissions explicites plus précises et de conserver uniquement les permissions explicitement définies pour les groupes autorisés.
 
 ---
 
