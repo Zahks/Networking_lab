@@ -6,6 +6,10 @@ Cette structuration permet de séparer les utilisateurs, les ordinateurs et les 
 
 ### Organisation générale
 
+![AD overview](../images/03-Active-directory/ad-01-arborescence-generale.png)
+
+*Figure 1 - Organisation générale du domaine Active Directory.*
+
 ```text
 lab.local
 │
@@ -31,20 +35,24 @@ lab.local
 
 L'ensemble des utilisateurs métier est regroupé dans une unité d'organisation parent dédiée.
 
+![OU Utilisateurs](../images/03-Active-directory/ad-02-utilisateurs.png)
+
+*Figure 2 - Répartition des utilisateurs par service.*
+
 ```text
 Utilisateurs
 │
-├── IT
-│   └── J. Awountsac
-│
-├── RH
-│   └── A. Awountsac
+├── Direction
+│   └── U. Awountsac
 │
 ├── Finance
 │   └── M. Awountsac
 │
-└── Direction
-    └── U. Awountsac
+├── IT
+│   └── J. Awountsac
+│
+└── RH
+    └── A. Awountsac
 ```
 
 Chaque sous-OU représente un service de l'entreprise.
@@ -62,6 +70,10 @@ Cette organisation permet :
 
 Les postes de travail du domaine sont regroupés dans une unité d'organisation dédiée.
 
+![OU Ordinateurs](../images/03-Active-directory/ad-04-ordinateur-domaine.png)
+
+*Figure 3 - Poste client joint au domaine.*
+
 ```text
 Ordinateurs
 │
@@ -74,6 +86,10 @@ Cette séparation permet d'appliquer des stratégies spécifiques aux postes du 
 ## Groupes de sécurité
 
 Afin de simplifier l'administration des permissions et de respecter les bonnes pratiques Active Directory, plusieurs groupes de sécurité ont été créés.
+
+![Security groups](../images/03-Active-directory/ad-03-groupes-securite.png)
+
+*Figure 4 - Groupes métiers et groupes d'accès utilisés pour l'administration des permissions.*
 
 ### Groupes métiers
 
