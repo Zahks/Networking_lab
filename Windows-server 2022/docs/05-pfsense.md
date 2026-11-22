@@ -19,6 +19,12 @@ Il assure :
 
 ## Interfaces
 
+Le WAN de pfSense est connecté au réseau NAT VMware.
+
+![Interfaces pfSense](../images/05-pfsense/LAN-WAN-interfaces-pfSense.png)
+
+*Figure 1 - Configuration des interfaces WAN et LAN de pfSense.*
+
 Le pare-feu dispose de deux interfaces réseau.
 
 ### WAN
@@ -96,6 +102,10 @@ Les machines du réseau interne accèdent à Internet grâce à la traduction d'
 
 # Règles de filtrage
 
+![Réseau pfSense](../images/05-pfsense/pfsense-03-lan-rules.png)
+
+*Figure 2 - Règle autorisant les postes du réseau local à accéder aux ressources externes.*
+
 Une règle LAN autorise les équipements du réseau interne à accéder aux ressources externes.
 
 Exemple :
@@ -112,7 +122,7 @@ Cette règle autorise la communication depuis le réseau local vers toute destin
 
 ## Symptômes
 
-Après plusieurs semaines sans démarrer le laboratoire :
+Après plusieurs jours sans démarrer le laboratoire :
 
 - les postes du domaine n'avaient plus accès à Internet ;
 - la résolution DNS ne fonctionnait plus ;
@@ -203,6 +213,23 @@ Le trafic Internet ne pouvait plus être routé correctement.
 
 ---
 
+## Résolution
+
+Cette adresse appartenait au réseau local et ne pouvait pas assurer la sortie vers Internet.
+
+La passerelle WAN a été reconfigurée afin de pointer vers la gateway du réseau VMware NAT :
+
+```text
+192.168.80.2
+```
+La table de routage a ensuite été vérifiée afin de confirmer la présence de la route par défaut correcte.
+
+### Vérification de la route par défaut
+
+![Route par défaut](../images/05-pfsense/pfsense-05-route-default.png)
+
+*Figure 3 - Vérification de la route par défaut après correction de la passerelle WAN.*
+
 ## Deuxième anomalie
 
 L'interface WAN ne recevait plus d'adresse IPv4.
@@ -278,6 +305,10 @@ Status : Online
 ```
 
 est apparu pour la gateway WAN.
+
+![Gateway Online](../images/05-pfsense/pfsense-02-gateway-online.png)
+
+*Figure 3 - État de la gateway WAN après résolution du problème de connectivité.*
 
 ---
 
