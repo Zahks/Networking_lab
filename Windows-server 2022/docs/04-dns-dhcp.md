@@ -58,6 +58,9 @@ Le DNS est intégré à Active Directory.
 
 ## Zone DNS
 
+![Zone DNS](../images/04-dns-dhcp/dns-01-zone-lab-local.png)
+
+*Figure 1 - Zone DNS intégrée à Active Directory pour le domaine lab.local.*
 Zone configurée :
 
 ```text
@@ -65,6 +68,10 @@ lab.local
 ```
 
 Cette zone contient notamment :
+
+![Enregistrements DNS](../images/04-dns-dhcp/dns-02-enregistrement-dc01.png)
+
+*Figure 2 - Enregistrements DNS de la zone lab.local, incluant le contrôleur de domaine DC01 et le poste client du domaine.*
 
 ```text
 dc01.lab.local
@@ -166,6 +173,10 @@ Après modification :
 - le poste a pu rejoindre le domaine ;
 - l'authentification Active Directory est devenue fonctionnelle.
 
+![Validation DNS](../images/04-dns-dhcp/dns-04-nslookup-dc01.png)
+
+*Figure 4 - Vérification de la résolution DNS depuis le poste client. Le nom dc01.lab.local est correctement résolu vers l'adresse 192.168.1.10*
+
 ---
 
 # DHCP
@@ -198,6 +209,10 @@ Exemples :
 ---
 
 ## Paramètres nécessaires à un poste du domaine
+
+![Client Configuration](../images/04-dns-dhcp/dns-03-configuration-client.png)
+
+*Figure 3 - Configuration d'un poste du domaine.*
 
 Pour fonctionner correctement, un poste du domaine doit disposer :
 
