@@ -45,7 +45,7 @@ L'objectif est de centraliser l'administration à l'aide d'Active Directory et d
 
 ### Vue générale du laboratoire
 
-![Logical Representation](../images/02-Architecture/logical-representation.png)
+![Logical Representation](../images/02-Architecture/lab-global-overview.png)
 
 *Figure 1 - Environnement virtualisé exécuté sous VMware Workstation comprenant pfSense, Windows Server 2022, Windows 11 et Ubuntu Server.*
 
