@@ -220,7 +220,7 @@ Cette manipulation a permis d'appliquer des permissions explicites plus précise
 
 ![Permissions avancées](../images/06-NTFS-partages/ntfs-02-permissions-avancees-Finance.png)
 
-*Figure 1 - Gestion avancée des permissions NTFS du dossier Finance. Les autorisations sont attribuées au groupe G_Acces_Finance et l'héritage a été désactivé afin de conserver un contrôle précis des accès.*
+*Figure 2 - Gestion avancée des permissions NTFS du dossier Finance. Les autorisations sont attribuées au groupe G_Acces_Finance et l'héritage a été désactivé afin de conserver un contrôle précis des accès.*
 
 ---
 
