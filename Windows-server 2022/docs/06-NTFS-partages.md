@@ -39,6 +39,10 @@ Direction
 
 Chaque dossier correspond à un service spécifique de l'entreprise.
 
+![Dossiers métiers](../images/06-NTFS-partages/ntfs-01-partages-et-permissions-Finance.png)
+
+*Figure 1 - Arborescence des dossiers métiers et exemple de permissions attribuées au dossier Finance via le groupe G_Acces_Finance.*
+
 ---
 
 # Organisation des groupes
@@ -213,6 +217,10 @@ L'héritage a été désactivé sur certains dossiers afin de :
 - simplifier l'analyse des droits.
 
 Cette manipulation a permis d'appliquer des permissions explicites plus précises et de conserver uniquement les permissions explicitement définies pour les groupes autorisés.
+
+![Permissions avancées](../images/06-NTFS-partages/ntfs-02-permissions-avancees-Finance.png)
+
+*Figure 2 - Gestion avancée des permissions NTFS du dossier Finance. Les autorisations sont attribuées au groupe G_Acces_Finance et l'héritage a été désactivé afin de conserver un contrôle précis des accès.*
 
 ---
 

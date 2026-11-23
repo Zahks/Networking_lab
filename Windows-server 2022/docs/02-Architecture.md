@@ -10,30 +10,9 @@ L'architecture repose sur un pare-feu pfSense assurant le routage entre le rése
 
 ## Schéma logique
 
-```text
-Internet
-    │
-VMware NAT
-    │
-WAN : 192.168.80.137
-    │
-┌───────────────┐
-│    pfSense    │
-│ LAN 192.168.1.1
-└───────────────┘
-    │
-─────────────────────
-Réseau 192.168.1.0/24
-─────────────────────
-    │
-    ├── DC01
-    │   192.168.1.10
-    │
-    └── DESKTOP-RNDT6FD
-        192.168.1.100
-```
+![Logical Representation](../images/02-Architecture/logical-representation.png)  
 
----
+*Figure 1 - Architecture logique du laboratoire Windows Server 2022.*
 
 ## Infrastructure virtuelle
 
@@ -55,6 +34,10 @@ L'ensemble de l'environnement est exécuté sous VMware Workstation.
 ### Réseau WAN
 
 Le WAN de pfSense est connecté au réseau NAT VMware.
+
+![Interfaces pfSense](../images/05-pfsense/LAN-WAN-interfaces-pfSense.png)
+
+*Figure 2 - Configuration des interfaces WAN et LAN de pfSense.*
 
 | Equipement | Adresse |
 |------------|----------|
@@ -80,6 +63,10 @@ Le réseau interne utilise le sous-réseau :
 ---
 
 ## Contrôleur de domaine
+
+![Config Server](../images/05-pfsense/Config-DC01.png)
+
+*Figure 3 - Configuration IP du contrôleur de domaine DC01.*
 
 ### Nom du serveur
 
